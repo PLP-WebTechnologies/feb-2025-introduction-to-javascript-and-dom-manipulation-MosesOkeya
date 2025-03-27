@@ -24,3 +24,38 @@ Respond to user interactions.
 - Ensure semantic correctness.
 
 Happy Coding! 💻✨
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const taskInput = document.getElementById("taskInput");
+    const addTaskBtn = document.getElementById("addTaskBtn");
+    const taskList = document.getElementById("taskList");
+
+    addTaskBtn.addEventListener("click", function () {
+        const taskText = taskInput.value.trim();
+
+        if (taskText !== "") {
+            const listItem = document.createElement("li");
+            listItem.textContent = taskText;
+
+            listItem.addEventListener("click", function () {
+                this.remove();
+            });
+
+            taskList.appendChild(listItem);
+            taskInput.value = "";
+        } else {
+            alert("Please enter a task!");
+        }
+    });
+
+    taskInput.addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+            addTaskBtn.click();
+        }
+    });
+});
